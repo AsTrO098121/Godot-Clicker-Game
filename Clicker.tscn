@@ -1,0 +1,98 @@
+[gd_scene format=3 uid="uid://l2e8qpigtew3"]
+
+[ext_resource type="Script" uid="uid://c8fba46i1i0ia" path="res://Scripts/Clicker.gd" id="1_1i788"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_lree6"]
+line_spacing = 5.0
+font_size = 38
+shadow_size = 27
+
+[sub_resource type="GDScript" id="GDScript_1i788"]
+
+[node name="Clicker" type="Node2D" unique_id=485212026]
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=234691278]
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(28.83959, 16.189867)
+color = Color(0.19674048, 0.33271712, 0.31685317, 1)
+
+[node name="Control" type="Control" parent="." unique_id=41210194]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1152.0
+offset_bottom = 643.0
+script = ExtResource("1_1i788")
+
+[node name="ScoreLabel" type="Label" parent="Control" unique_id=1609397379]
+layout_mode = 0
+offset_left = 563.0
+offset_top = 179.0
+offset_right = 585.0
+offset_bottom = 232.0
+scale = Vector2(0.99816746, 1)
+text = "0"
+label_settings = SubResource("LabelSettings_lree6")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Button" type="Button" parent="Control" unique_id=1278082525]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -25.0
+offset_top = -18.0
+offset_right = 25.0
+offset_bottom = 18.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0)
+theme_override_font_sizes/font_size = 20
+text = "CLICK"
+
+[node name="Camera2D" type="Camera2D" parent="Control" unique_id=1858360293]
+position = Vector2(576, 323)
+
+[node name="AutoClickButton" type="Button" parent="Control" unique_id=1730403298]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -55.0
+offset_top = 27.5
+offset_right = 55.0
+offset_bottom = 58.5
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(71.5, 0)
+text = "Auto-clicker(10)"
+script = SubResource("GDScript_1i788")
+
+[node name="UpgradeButton" type="Button" parent="Control" unique_id=1635824144]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -55.0
+offset_top = 62.5
+offset_right = 55.0
+offset_bottom = 93.5
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(61, 0)
+text = "Upgrade (10)"
+
+[node name="AutoClickTimer" type="Timer" parent="Control" unique_id=1005437798]
+
+[connection signal="pressed" from="Control/Button" to="Control" method="_on_button_pressed"]
+[connection signal="pressed" from="Control/AutoClickButton" to="Control" method="_on_auto_click_button_pressed"]
+[connection signal="pressed" from="Control/UpgradeButton" to="Control" method="_on_upgrade_button_pressed"]
+[connection signal="timeout" from="Control/AutoClickTimer" to="Control" method="_on_auto_clicker_timer_timeout"]

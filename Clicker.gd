@@ -1,15 +1,18 @@
 extends Control
 
+#Main Button and Score
 var score = 0
 var click_power = 1
 var current_level = 1
 
+#Auto-Clicker
 var auto_clicker_power = 0
 var auto_click_timer = null
 var auto_click_price = 10
 
 var upgrade_price = 10
 
+#Levels
 const LEVEL_1 = 10
 const LEVEL_2 = 20
 const LEVEL_3 = 40
@@ -19,7 +22,7 @@ const LEVEL_5 = 160
 func _ready():
 	update_buttons()
 
-
+#Main Button
 func _on_button_pressed():
 	score += click_power
 	$ScoreLabel.text = str(score)
@@ -30,6 +33,7 @@ func _on_button_pressed():
 	check_level_up()
 	update_buttons()
 
+#Level Up
 func check_level_up():
 	if score >= LEVEL_5:
 		modulate = Color.ORCHID
@@ -45,6 +49,7 @@ func check_level_up():
 	
 	update_buttons()
 
+#Upgrade Button
 func _on_upgrade_button_pressed():
 	if score >= upgrade_price:
 		score -= upgrade_price
@@ -59,6 +64,7 @@ func _on_upgrade_button_pressed():
 		
 		update_buttons()
 
+#Auto-Click Timer
 func _on_auto_clicker_timer_timeout() -> void:
 	score += auto_clicker_power
 	$ScoreLabel.text = str(score)
@@ -66,6 +72,7 @@ func _on_auto_clicker_timer_timeout() -> void:
 	
 	update_buttons()
 
+#Auto-Clicker buy Button
 func _on_auto_click_button_pressed():
 	if score >= auto_click_price:
 		score -= auto_click_price
